@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "2.0.0",
   "name": "go-try",
   "description": "Easy and flattened error handling for sync and async functions",
   "author": "onderonur",
@@ -72,7 +72,7 @@
     "lint-staged": "^10.5.2",
     "size-limit": "^4.9.0",
     "tsdx": "^0.14.1",
-    "tslib": "^2.0.3",
-    "typescript": "^4.1.2"
+    "tslib": "^2.4.0",
+    "typescript": "^4.6.3"
   }
 }

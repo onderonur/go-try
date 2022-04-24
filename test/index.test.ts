@@ -6,7 +6,7 @@ describe('index', () => {
     const result = goTrySync<string>(() => {
       return syncData;
     });
-    const expectedResult: GoTryResult<string> = { data: syncData, error: null };
+    const expectedResult: GoTryResult<string> = [null, syncData];
     expect(result).toEqual(expectedResult);
   });
 
@@ -15,10 +15,7 @@ describe('index', () => {
     const result = await goTry<string>(async () => {
       return asyncData;
     });
-    const expectedResult: GoTryResult<string> = {
-      data: asyncData,
-      error: null,
-    };
+    const expectedResult: GoTryResult<string> = [null, asyncData];
     expect(result).toEqual(expectedResult);
   });
 
@@ -27,10 +24,10 @@ describe('index', () => {
     const result = goTrySync(() => {
       throw syncError;
     });
-    const expectedResult: GoTryResult<null, typeof syncError> = {
-      data: null,
-      error: syncError,
-    };
+    const expectedResult: GoTryResult<null, typeof syncError> = [
+      syncError,
+      null,
+    ];
     expect(result).toEqual(expectedResult);
   });
 
@@ -39,10 +36,10 @@ describe('index', () => {
     const result = await goTry(async () => {
       throw asyncError;
     });
-    const expectedResult: GoTryResult<null, typeof asyncError> = {
-      data: null,
-      error: asyncError,
-    };
+    const expectedResult: GoTryResult<null, typeof asyncError> = [
+      asyncError,
+      null,
+    ];
     expect(result).toEqual(expectedResult);
   });
 });
