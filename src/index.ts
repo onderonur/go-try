@@ -1,15 +1,15 @@
 export type GoTryResult<Data, E extends Error = Error> =
-  | { data: Data; error: null }
-  | { data: null; error: E };
+  | [null, Data]
+  | [E, null];
 
 export async function goTry<D, E extends Error = Error>(
   callback: () => Promise<D>,
 ): Promise<GoTryResult<D, E>> {
   try {
     const data = await callback();
-    return { data, error: null };
+    return [null, data];
   } catch (error) {
-    return { data: null, error };
+    return [error as E, null];
   }
 }
 
@@ -18,8 +18,8 @@ export function goTrySync<D, E extends Error = Error>(
 ): GoTryResult<D, E> {
   try {
     const data = callback();
-    return { data, error: null };
+    return [null, data];
   } catch (error) {
-    return { data: null, error };
+    return [error as E, null];
   }
 }
