@@ -82,7 +82,7 @@ if (error) {
 // Rest of the code
 ```
 
-## Desctructuring with TypeScript
+## Destructuring with TypeScript
 
 If you are using a `typescript` version below `v4.6.0`, you will come accross a ts error like below:
 

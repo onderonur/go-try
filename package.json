@@ -1,5 +1,5 @@
 {
-  "version": "2.0.0",
+  "version": "2.0.1",
   "name": "go-try",
   "description": "Easy and flattened error handling for sync and async functions",
   "author": "onderonur",
