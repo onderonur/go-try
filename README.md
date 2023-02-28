@@ -1,8 +1,9 @@
 # go-try
 
-![Build status](https://img.shields.io/github/workflow/status/onderonur/go-try/CI)
+![Build status](https://img.shields.io/github/actions/workflow/status/onderonur/go-try/main.yml)
 ![License](https://img.shields.io/npm/l/go-try)
-![Version](https://img.shields.io/npm/v/go-try)  
+![Version](https://img.shields.io/npm/v/go-try)
+
 go-try is a zero dependency npm package inspired by [Go](https://golang.org/) programming language (Golang). Its main goal is to reduce use of try-catch blocks in JavaScript/TypeScript code and make exception handling easier with a more flattened structure. It can be used with async or sync functions. It's compatible with both browser and server-side applications.
 
 ## Async Example
