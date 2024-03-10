@@ -1,4 +1,5 @@
-import { goTry, goTrySync, GoTryResult } from '../src';
+import type { GoTryResult } from '.';
+import { goTry, goTrySync } from '.';
 
 describe('index', () => {
   it('should return correct data and error should be null when succeeded (sync)', () => {
@@ -13,7 +14,7 @@ describe('index', () => {
   it('should resolve a promise with correct data and error should be null when succeeded (async)', async () => {
     const asyncData: string = 'some async data';
     const result = await goTry<string>(async () => {
-      return asyncData;
+      return await Promise.resolve(asyncData);
     });
     const expectedResult: GoTryResult<string> = [null, asyncData];
     expect(result).toEqual(expectedResult);
@@ -24,22 +25,16 @@ describe('index', () => {
     const result = goTrySync(() => {
       throw syncError;
     });
-    const expectedResult: GoTryResult<null, typeof syncError> = [
-      syncError,
-      null,
-    ];
+    const expectedResult: GoTryResult<null> = [syncError, null];
     expect(result).toEqual(expectedResult);
   });
 
   it('should resolve a promise with correct error and data should be null when failed (async)', async () => {
     const asyncError = new Error('some async error');
-    const result = await goTry(async () => {
+    const result = await goTry(() => {
       throw asyncError;
     });
-    const expectedResult: GoTryResult<null, typeof asyncError> = [
-      asyncError,
-      null,
-    ];
+    const expectedResult: GoTryResult<null> = [asyncError, null];
     expect(result).toEqual(expectedResult);
   });
 });

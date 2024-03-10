@@ -5,37 +5,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Begin CI...
+      - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Use Node 12
+      - name: Use Node 20
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: 20.x
 
-      - name: Use cached node_modules
-        uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: nodeModules-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            nodeModules-
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
-        env:
-          CI: true
+        run: npm ci
+
+      - name: Format
+        run: npm run format
 
       - name: Lint
-        run: yarn lint:fix
-        env:
-          CI: true
+        run: npm run lint
 
       - name: Test
-        run: yarn test --ci --coverage --maxWorkers=2
-        env:
-          CI: true
+        run: npm test
 
       - name: Build
-        run: yarn build
-        env:
-          CI: true
+        run: npm run build

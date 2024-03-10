@@ -130,5 +130,3 @@ const [error, users] = await goTry<User[]>(() => getUsers());
 // or
 const [error, users] = goTrySync<User[]>(() => getUsersSync());
 ```
-
-_(This package is created by using [TSDX](https://github.com/formium/tsdx).)_
