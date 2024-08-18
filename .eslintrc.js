@@ -5,7 +5,7 @@ module.exports = {
     './config/eslint/typescript',
     './config/eslint/import',
     './config/eslint/unicorn',
-    'prettier',
+    './config/eslint/prettier',
   ],
   plugins: ['only-warn'],
   reportUnusedDisableDirectives: true,
@@ -13,5 +13,5 @@ module.exports = {
     node: true,
     browser: true,
   },
-  ignorePatterns: ['dist'],
+  ignorePatterns: ['dist', 'coverage'],
 };

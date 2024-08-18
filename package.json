@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/onderonur/go-try.git"
+    "url": "git+https://github.com/onderonur/go-try.git"
   },
   "license": "MIT",
   "author": "onderonur",
@@ -41,33 +41,44 @@
     "dist"
   ],
   "scripts": {
+    "attw:check": "attw --pack .",
     "build": "tsup",
-    "format": "prettier --check --ignore-unknown .",
+    "codequality:check": "npm run format:check && npm run lint:check && npm run types:check",
+    "codequality:fix": "npm run format:fix && npm run lint:fix && npm run types:check",
+    "format:check": "prettier --check --ignore-unknown .",
     "format:fix": "prettier --write --ignore-unknown .",
-    "lint": "eslint src --max-warnings 0",
-    "lint:fix": "eslint src --fix --max-warnings 0",
+    "lint:check": "eslint . --max-warnings 0",
+    "lint:fix": "eslint . --fix --max-warnings 0",
     "prepare": "husky",
     "prepublishOnly": "npm run build",
-    "test": "jest",
-    "typecheck": "tsc"
+    "publint:check": "publint",
+    "test:check": "jest --coverage",
+    "test:watch": "jest --watch",
+    "types:check": "tsc",
+    "unused:check": "knip",
+    "updates:check": "npm-check-updates -i"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.15.4",
     "@types/jest": "^29.5.12",
-    "@types/node": "^20.11.25",
-    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@types/node": "^22.4.0",
+    "@typescript-eslint/eslint-plugin": "^8.1.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-only-warn": "^1.1.0",
-    "eslint-plugin-unicorn": "^51.0.1",
-    "husky": "^9.0.11",
+    "eslint-plugin-unicorn": "^55.0.0",
+    "husky": "^9.1.4",
     "jest": "^29.7.0",
-    "lint-staged": "^15.2.2",
-    "prettier": "^3.2.5",
-    "prettier-plugin-packagejson": "^2.4.12",
-    "ts-jest": "^29.1.2",
-    "tsup": "^8.0.2",
-    "typescript": "^5.4.2"
+    "knip": "^5.27.2",
+    "lint-staged": "^15.2.9",
+    "npm-check-updates": "^17.0.6",
+    "prettier": "^3.3.3",
+    "prettier-plugin-packagejson": "^2.5.1",
+    "publint": "^0.2.10",
+    "ts-jest": "^29.2.4",
+    "tsup": "^8.2.4",
+    "typescript": "^5.5.4"
   }
 }

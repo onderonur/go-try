@@ -1,4 +1,4 @@
-const { resolve } = require('node:path');
+const path = require('node:path');
 
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
@@ -6,7 +6,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       typescript: {
-        project: resolve(process.cwd(), 'tsconfig.json'),
+        project: path.resolve(process.cwd(), 'tsconfig.json'),
       },
     },
   },

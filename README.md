@@ -1,6 +1,6 @@
 # go-try
 
-![Build status](https://img.shields.io/github/actions/workflow/status/onderonur/go-try/main.yml)
+![Build status](https://img.shields.io/github/actions/workflow/status/onderonur/go-try/quality.yml)
 ![License](https://img.shields.io/npm/l/go-try)
 ![Version](https://img.shields.io/npm/v/go-try)
 
@@ -22,13 +22,13 @@ async function main() {
       try {
         const order = await createOrder(user, product);
         return order;
-      } catch (err) {
+      } catch (error) {
         console.log('Create order failed');
       }
-    } catch (err) {
+    } catch (error) {
       console.log('Fetch product failed');
     }
-  } catch (err) {
+  } catch (error) {
     console.log('Fetch user failed');
   }
 }

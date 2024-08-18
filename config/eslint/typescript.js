@@ -1,4 +1,4 @@
-const { resolve } = require('node:path');
+const path = require('node:path');
 
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
@@ -6,7 +6,7 @@ module.exports = {
     {
       files: ['*.ts'],
       parserOptions: {
-        project: resolve(process.cwd(), 'tsconfig.json'),
+        project: path.resolve(process.cwd(), 'tsconfig.json'),
       },
       // Contains all of recommended, recommended-type-checked, and strict,
       // along with additional strict rules that require type information.
@@ -18,6 +18,10 @@ module.exports = {
         '@typescript-eslint/no-misused-promises': [
           'warn',
           { checksVoidReturn: false },
+        ],
+        '@typescript-eslint/restrict-template-expressions': [
+          'warn',
+          { allowNumber: true },
         ],
       },
     },

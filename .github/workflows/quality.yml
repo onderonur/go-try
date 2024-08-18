@@ -1,0 +1,70 @@
+name: Quality
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# To cancel previous workflow when a new one is triggered.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  format:
+    name: Format
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+      - name: Install
+        uses: ./.github/composite-actions/install
+      - name: Run format check
+        run: npm run format:check
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+      - name: Install
+        uses: ./.github/composite-actions/install
+      - name: Run lint check
+        run: npm run lint:check
+
+  typecheck:
+    name: Typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+      - name: Install
+        uses: ./.github/composite-actions/install
+      - name: Run type check
+        run: npm run types:check
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+      - name: Install
+        uses: ./.github/composite-actions/install
+      - name: Run tests
+        run: npm run test:check
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+      - name: Install
+        uses: ./.github/composite-actions/install
+      - name: Run build
+        run: npm run build
